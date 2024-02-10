@@ -23,6 +23,15 @@ export function App() {
     return []
   })
 
+  function onNoteDeleted(id:string){
+    const noteArray = notes.filter(note => {
+      return note.id !== id
+    })
+
+    setNotes(noteArray)
+
+    localStorage.setItem('notes', JSON.stringify(noteArray))
+  }
 
   function onNoteCreated(content: string){
     const newNote ={
@@ -66,7 +75,7 @@ export function App() {
       <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[250px] gap-6'>
       <NewNote  onNoteCreated={onNoteCreated} />
       {filteredNotes.map(note =>{
-        return <NoteCard key={note.id} note={note}/>
+        return <NoteCard key={note.id} note={note} onNoteDeleted={onNoteDeleted}/>
       })}
       </div>
     </div>
