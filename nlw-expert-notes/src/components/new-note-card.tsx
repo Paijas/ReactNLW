@@ -17,7 +17,7 @@ export function NewNote({onNoteCreated}: NewNoteCardProps){
 
     function handleContentChanged(event: ChangeEvent<HTMLTextAreaElement>){
       setContent(event.target.value)
-      console.log(content)
+  
       if(event.target.value ===''){
         setshouldShowOnboarding(true)
       }
@@ -30,6 +30,8 @@ export function NewNote({onNoteCreated}: NewNoteCardProps){
     function handleSaveNote(event: FormEvent){
       event.preventDefault()
       onNoteCreated(content)
+      setContent('')
+      setshouldShowOnboarding(true)
       toast.success('Nota adicionada com sucesso!')
     }
     return(
@@ -58,6 +60,7 @@ export function NewNote({onNoteCreated}: NewNoteCardProps){
                   ):(
                     <textarea 
                     autoFocus
+                    value={content}
                     onChange={handleContentChanged}
                     className='text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none'></textarea>
                   )}
