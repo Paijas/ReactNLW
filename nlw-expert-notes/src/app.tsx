@@ -30,10 +30,8 @@ export function App() {
       date: new Date(),
       content,
     }
-
   
      const noteArray = [newNote, ...notes]
-
 
     setNotes(noteArray)
     
@@ -51,7 +49,7 @@ export function App() {
   ? notes.filter(note => note.content.toLocaleLowerCase().includes(search.toLocaleLowerCase())):notes
   
   return (
-    <div className='mx-auto max-w-6xl bg my-12 space-y-6'>
+    <div className='mx-auto max-w-6xl bg my-12 space-y-6 px-5 '>
       <img src={logo} alt="" />
 
       <form className='w-full'>
@@ -65,7 +63,7 @@ export function App() {
 
       <div className='h-px bg-slate-700'/>
 
-      <div className='grid grid-cols-3 auto-rows-[250px] gap-6'>
+      <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[250px] gap-6'>
       <NewNote  onNoteCreated={onNoteCreated} />
       {filteredNotes.map(note =>{
         return <NoteCard key={note.id} note={note}/>
